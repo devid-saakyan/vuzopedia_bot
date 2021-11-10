@@ -91,8 +91,8 @@ async def getter(message: types.Message, state: FSMContext):
         temp = str(i).split('-')
         try:
             inputs[dict_of_subjects[temp[0]]] = temp[1]
-        except KeyError:
-            await message.answer('Проверьте корректность данных, и отправьте снова')
+        except [KeyError, IndexError]:
+            await message.answer('Проверьте корректность данных, и отправьте снова, или перезапустите бот')
             return
     url = f'https://vuzopedia.ru/kalkulator-ege/{dict_of_number[city]}?mat={inputs.get("mat")}&rus={inputs.get("rus")}&' \
           f'fiz={inputs.get("fiz")}&obshe={inputs.get("obshe")}&ist={inputs.get("ist")}&biol={inputs.get("biol")}' \
